@@ -1,16 +1,7 @@
 FROM alpine:3.8
 MAINTAINER lafant
 
-ENV NODE_ID=1                     \
-    SPEEDTEST=6                   \
-    CLOUDSAFE=1                   \
-    AUTOEXEC=0                    \
-    ANTISSATTACK=0                \
-    MYSQL_HOST=127.0.0.1          \
-    MYSQL_PORT=3306               \
-    MYSQL_USER=ss                 \
-    MYSQL_PASS=ss                 \
-    MYSQL_DB=shadowsocks          \
+ENV NODE_ID=1                     
 
 RUN  apk --no-cache add \
                         curl \
@@ -42,14 +33,6 @@ RUN  apk --no-cache add \
 WORKDIR /root/shadowsocks
 
 CMD sed -i "s|NODE_ID = 1|NODE_ID = ${NODE_ID}|"                               /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|SPEEDTEST = 6|SPEEDTEST = ${SPEEDTEST}|"                         /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|CLOUDSAFE = 1|CLOUDSAFE = ${CLOUDSAFE}|"                         /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|AUTOEXEC = 0|AUTOEXEC = ${AUTOEXEC}|"                            /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|ANTISSATTACK = 0|ANTISSATTACK = ${ANTISSATTACK}|"                /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|MYSQL_HOST = '127.0.0.1'|MYSQL_HOST = '${MYSQL_HOST}'|"          /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|MYSQL_PORT = 3306|MYSQL_PORT = ${MYSQL_PORT}|"               /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|MYSQL_USER = 'ss'|MYSQL_USER = '${MYSQL_USER}'|"                 /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|MYSQL_PASS = 'ss'|MYSQL_PASS = '${MYSQL_PASS}'|"                 /root/shadowsocks/userapiconfig.py && \
-    sed -i "s|MYSQL_DB = 'shadowsocks'|MYSQL_DB = '${MYSQL_DB}'|"              /root/shadowsocks/userapiconfig.py && \
+
 
     python /root/shadowsocks/server.py
