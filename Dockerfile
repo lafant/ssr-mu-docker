@@ -27,6 +27,7 @@ RUN  apk --no-cache add \
      ln -s /usr/bin/pip3    /usr/bin/pip      && \
      git clone -b manyuser https://github.com/lafant/shadowsocks-mu.git "/root/shadowsocks" --depth 1 && \
      cd  /root/shadowsocks                    && \
+     pip install cymysql==0.9.4               && \
      rm -rf ~/.cache && touch /etc/hosts.deny && \
      apk del --purge .build-deps
 
